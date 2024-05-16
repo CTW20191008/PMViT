@@ -1,0 +1,494 @@
+#######
+2024-5-9~2024-5-10:
+===PViT: 0.6 && All ImageNet-1k && 20 epoch flip, then 10 epoch Token Embeddings mask
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_simmim.py --cfg configs/bvit_pretrain_img224_10_30_6.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 bvit_pretrain_inference.py --cfg configs/bvit_pretrain_img224_10_30_6.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/bvit_finetune_img224_10_30_6.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/bvit_pretrain_img224_10_30_6/ckpt_epoch_26.pth --local-rank 0
+
+#######
+2024-5-8~2024-5-9:
+===PViT: 0.6 && All ImageNet-1k && 20 epoch flip, then 20 epoch mask
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_10_6_20_flip_20_mask.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_10_6_20_flip_20_mask.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_10_6_20_flip_20_mask.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_10_6_20_flip_20_mask/ckpt_epoch_35.pth --local-rank 0
+
+#######
+2024-5-7~2024-5-8:
+===PViT: 0.9 && All ImageNet-1k && 20 epoch && flip && mask
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_20_10_9_flip_mask.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_20_10_9_flip_mask.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_10_9_flip_mask.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_20_10_9_flip_mask/ckpt_epoch_19.pth --local-rank 0
+
+#######
+2024-5-6~2024-5-7:
+===PViT: 0.6 && All ImageNet-1k && 20 epoch && flip && mask
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_20_10_6_flip_mask.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_20_10_6_flip_mask.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_10_6_flip_mask.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_20_10_6_flip_mask/ckpt_epoch_19.pth --local-rank 0
+
+#######
+2024-4-29~2024-5-6:
+===PViT: 0.5~0.9 && All ImageNet-1k && 100 epoch && flip && mask
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_100_10_flip_r_5_9_mask.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_100_10_flip_r_5_9_mask.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_100_10_flip_r59_mask.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_100_10_flip_r_5_9_mask/ckpt_epoch_99.pth --local-rank 0
+
+#######
+2024-4-27~2024-4-29:
+===PViT: 0.5~0.9 && All ImageNet-1k && 20 epoch && flip && mask
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_20_10_flip_r_5_9_mask.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_20_10_flip_r_5_9_mask.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_10_flip_r_5_9_mask.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_20_10_flip_r_5_9_mask/ckpt_epoch_19.pth --local-rank 0
+
+
+#######
+2024-4-26~2024-4-27:
+===PViT: 0.5~0.9 && All ImageNet-1k && 20 epoch && flip
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_20_10_flip_r_5_9.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_20_10_flip_r_5_9.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_10_flip_r_5_9.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_20_10_flip_r_5_9/ckpt_epoch_19.pth --local-rank 0
+
+#######
+2024-4-24~2024-4-26:
+===PViT: 0.3~0.9 && All ImageNet-1k && 20 epoch && flip
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_20_10_flip_r_3_9.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_20_10_flip_r_3_9.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_10_flip_r_3_9.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_20_10_flip_r_3_9/ckpt_epoch_20.pth --local-rank 0
+
+#######
+2024-4-23~2024-4-24:
+===PViT: 0.6 && All ImageNet-1k && 20 epoch && flip
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_20_10_6_flip.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_20_10_6_flip.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_10_6_flip.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_20_10_6_flip/ckpt_epoch_20.pth --local-rank 0
+
+#######
+2024-4-22~2024-4-23: 
+===PViT: 0.9 && All ImageNet-1k && 100 epoch
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_20_10_9.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_20_10_9.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_10_9.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_100_10_9/ckpt_epoch_20.pth --local-rank 0
+
+#######
+2024-4-17~2024-4-18: 
+===PViT: 0.6 && All ImageNet-1k && 100 epoch
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_20_10_6.yaml --data-path /home/yons/dataset/all/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_20_10_6.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_10_6.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_100_10_6/ckpt_epoch_20.pth --local-rank 0
+
+#######
+2024-4-15: 
+===PViT: 0.6
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_6.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_6/ckpt_epoch_750.pth --local-rank 0
+
+#######
+2024-4-12: 
+===BViT
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 bvit_pretrain_inference.py --cfg configs/bvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/vit_base_finetune_img224_100.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/bvit_pretrain_img224_800_1_10_6/ckpt_epoch_350.pth --local-rank 0
+
+#######
+2024-4-10: 
+===BViT
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/vit_base_finetune_img224_100.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/bvit_pretrain_img224_800_1_10_6/ckpt_epoch_180.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_simmim.py --cfg configs/bvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-4-8: 
+===PViT: position embedding && L1 loss && Partially out of order (0.3)
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_0_1_10.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_3/ckpt_epoch_0.pth --local-rank 0
+
+===PViT: position embedding && L1 loss && Partially out of order (1.0)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_10.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_10.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_10/ckpt_epoch_799.pth --local-rank 0
+
+===BViT
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/vit_base_finetune_img224_100.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/vit_base_pretrain_img224_office/ckpt_epoch_799.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_simmim.py --cfg configs/bvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-4-7: 
+===PViT: position embedding && L1 loss && Partially out of order (0.3)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_3/ckpt_epoch_799.pth --local-rank 0
+
+#######
+2024-4-1: 
+===PViT: position embedding && L1 loss && Partially out of order (0.3)
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_3/ckpt_epoch_799.pth --local-rank 0
+
+#######
+2024-3-27 && 2024-3-28 && 2024-4-1: 
+===PViT: position embedding && L1 loss && Partially out of order (0.9)
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_9/ckpt_epoch_799.pth --local-rank 0
+
+#######
+2024-3-26: 
+===PViT: position embedding && L1 loss && Partially out of order (0.6)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_6/ckpt_epoch_799.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-25: 
+===PViT: position embedding && L1 loss && Partially out of order (0.6)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_6/ckpt_epoch_590.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-21: 
+===PViT: position embedding && L1 loss && Partially out of order (0.6)
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-21: 
+===PViT: position embedding && L1 loss && Partially out of order (0.9)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_9/ckpt_epoch_175.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-20: 
+===PViT: position embedding && flip && L1 loss + SSIM loss && Partially out of order (0.9)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_9/ckpt_epoch_165.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-19: 
+===PViT: position embedding && flip && L1 loss + SSIM loss && Partially out of order (0.9)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_9/ckpt_epoch_65.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-18: 
+===PViT: position embedding && no flip && L1 loss && Partially out of order (0.3)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_3/ckpt_epoch_799.pth --local-rank 0
+
+===PViT: position embedding && no flip && L1 loss && Partially out of order (0.6)
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+===PViT: position embedding && flip && L1 loss + SSIM loss && Partially out of order (0.9)
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_9.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+#######
+2024-3-15: 
+===PViT: position embedding && no flip && L1 loss && Partially out of order (0.3)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_3/ckpt_epoch_409.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_3/ckpt_epoch_469.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-14: 
+===PViT: position embedding && no flip && L1 loss && Partially out of order (0.3)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_3/ckpt_epoch_239.pth --local-rank 0
+
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_3/ckpt_epoch_299.pth --local-rank 0
+
+#######
+2024-3-13: 
+===PViT: position embedding && no flip && L1 loss && Partially out of order (0.3)
+[Pretrain] 
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_3.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+===PViT: position embedding && no flip && L1 loss && Partially out of order (0.6)
+[Inference] 
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800_1_10_6/ckpt_epoch_339.pth --local-rank 0
+
+#######
+2024-3-12: 
+===vit_base : 
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_simmim.py --cfg configs/vit_base_pretrain_img224_office.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+===PViT: position embedding && no flip && L1 loss && Partially out of order (0.6)
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_260_1_10_6.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_260_1_10_6/ckpt_epoch_259.pth --local-rank 0
+
+[Pretrain] 
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_800_1_10_6.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-11:position embedding && no flip && L1 loss && Partially out of order (0.6)
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_260_1_10_6.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+2024-3-12:position embedding && no flip && L1 loss && Partially out of order (0.6)
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_260_1_10_6.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+====
+2024-3-11:position embedding && no flip && L1 loss && Partially out of order (0.3/0.6)
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_800.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+
+#######
+2024-3-6:position embedding && no flip && L1 loss && Partially out of order (0.3)
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_80_1_10_3.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pretrain_inference.py --cfg configs/pvit_pretrain_img224_80_1_10_3.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_80_1_10_3.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_80_1_10_3/ckpt_epoch_79.pth --local-rank 0
+
+#######
+2024-3-6:position embedding && no flip && L1 loss && All out of order
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_80_1_10_all.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-3-4:position embedding && no flip && L1 loss && Partially out of order
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_80_1_10_no_flip_l1.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_inference.py --cfg configs/pvit_pretrain_img224_80_1_10_no_flip_l1.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_80_1_10_no_flip_l1.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_80_1_10_no_flip_l1/ckpt_epoch_159.pth --local-rank 0
+
+#######
+2024-2-28:position embedding && no flip && L1 loss && Partially out of order
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp_plus.py --cfg configs/pvit_pretrain_img224_40_1_10_no_flip_l1.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_inference.py --cfg configs/pvit_pretrain_img224_40_1_10_no_flip_l1.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_1_10_no_flip_l1.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_40_1_10_no_flip_l1/ckpt_epoch_40.pth --local-rank 0
+
+#######
+2024-2-27:position embedding && no flip && L2 loss && input image do encoder too
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp.py --cfg configs/pvit_pretrain_img224_40_1_10_no_flip_l2_v2.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+#######
+2024-2-27:position embedding && no flip && L2 loss
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp.py --cfg configs/pvit_pretrain_img224_40_1_10_no_flip_l2.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_inference.py --cfg configs/pvit_pretrain_img224_40_1_10_no_flip_l2.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+#######
+2024-2-26:position embedding && no flip
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp.py --cfg configs/pvit_pretrain_img224_40_1_10_no_flip.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+
+#######
+2024-2-26:no position embedding && no flip
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp.py --cfg configs/pvit_pretrain_img224_400_1_10_no_position_no_flip.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+
+#######
+2024-2-26:no position embedding
+[Pretrain]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp.py --cfg configs/pvit_pretrain_img224_400_1_10_no_position.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+[Inference]
+
+[Finetune]
+
+
+[Inatall apex]
+git clone https://github.com/NVIDIA/apex
+cd apex
+conda install packaging
+pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+cd ..
+
+#######
+## Comment out the version judgment in apex, and then you can use the following instructions to compile
+pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" ./
+这种方式会存在梯度溢出的情况。
+
+# pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cuda_ext" ./
+
+# pip install -v --disable-pip-version-check --no-build-isolation --no-cache-dir ./
+
+# python setup.py install --cuda_ext
+
+# pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+
+#######
+
+
+[Pretrain]
+# python3 pvit_pretrain.py --cfg configs/pvit_pretrain_img224_800.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/all/train --local-rank 0
+# python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp.py --cfg configs/pvit_pretrain_img224_800.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/all/train --local-rank 0
+
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp.py --cfg configs/pvit_pretrain_img224_800.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+从Loss来看，稳定下降，但并没有完全收敛，说明还可以增加epoch。
+
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_amp.py --cfg configs/pvit_pretrain_img224_400.yaml --data-path /home/yons/dataset/all_1_10/train --local-rank 0
+
+==[Inference]
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_inference.py --cfg configs/pvit_pretrain_inference_img224_800.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+python3 -m torch.distributed.launch --nproc_per_node 1 pvit_pretrain_inference.py --cfg configs/pvit_pretrain_inference_img224_400.yaml --data-path /home/yons/disk/zhuhao/ViT_P/Imagenet2012/train_tiny --local-rank 0 --amp-opt-level O0
+
+####
+[Finetune]
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_800/ckpt_epoch_799.pth --local-rank 0
+
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20.yaml --data-path /home/yons/dataset/all --pretrained output/simmim_pretrain/pvit_pretrain_img224_800/ckpt_epoch_799.pth --local-rank 0 --amp-opt-level O0
+
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/vit_base_finetune_img224_20.yaml --data-path /home/yons/dataset/all_1_10 --pretrained simmim_pretrain__vit_base__img224__800ep.pth --local-rank 0
+
+--finetune时，在小批量数据上，预训练模型在第一个周期就取得了非常高的精度92%；但在大批量数据上，预训练模型在第一个周期的精度非常低，只有7.7%。
+--使用混合精度进行finetune的时候，从第二个周期开始，每个周期后半段都会出现梯度爆炸的问题。
+
+python3 -m torch.distributed.launch --nproc_per_node 1 main_finetune_amp.py --cfg configs/pvit_finetune_img224_20_1_10.yaml --data-path /home/yons/dataset/all_1_10 --pretrained output/simmim_pretrain/pvit_pretrain_img224_400_1_10/ckpt_epoch_399.pth --local-rank 0
+
+
+===================================================
+#### 挂载内存
+mount -t tmpfs -o size=200G tmpfs /home/yons/disk/zhuhao/ViT_P/Imagenet2012/all
+

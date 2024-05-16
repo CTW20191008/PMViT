@@ -1,0 +1,35 @@
+MODEL:
+  TYPE: pvit
+  NAME: simmim_pretrain
+  DROP_PATH_RATE: 0.1
+  VIT:
+    EMBED_DIM: 768
+    DEPTH: 12
+    NUM_HEADS: 12
+    USE_APE: False
+    USE_RPB: False
+    USE_SHARED_RPB: True
+    USE_MEAN_POOLING: False
+  LOSS: 'L1'
+DATA:
+  IMG_SIZE: 224
+  BATCH_SIZE: 256
+  PIN_MEMORY: True
+  NUM_WORKERS: 8
+  MASK_RATIO: 0.6
+TRAIN:
+  EPOCHS: 20
+  WARMUP_EPOCHS: 5
+  BASE_LR: 1e-4
+  WARMUP_LR: 5e-7
+  WEIGHT_DECAY: 0.05
+  LR_SCHEDULER:
+    NAME: 'multistep'
+    GAMMA: 0.1
+    MULTISTEPS: [15,]
+PRETRAIN:
+  HOLD_FIRST_PATCH: True
+  PATCH_FLIP: True
+PRINT_FREQ: 1000
+SAVE_FREQ: 10
+TAG: pvit_pretrain_img224_20_10_6_flip
